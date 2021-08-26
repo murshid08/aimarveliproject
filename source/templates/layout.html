@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Qahiri&display=swap" rel="stylesheet">
+
+    {% if title %}
+        <title>DataBlog - {{ title }}</title>
+    {% else %}
+        <title>DataBlog</title>
+    {% endif %}
+</head>
+<body>
+  <div class="wrapper">
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-8">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <div class="navbar-nav mr-auto">
+                            <a class="nav-item nav-link pl-5 text-white font-italic" href="{{ url_for('home') }}"><img width="20px" src="https://image.flaticon.com/icons/png/512/61/61972.png"></a>
+                          </div>
+                          </ul>
+                  </div>
+
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-4">
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <div class="navbar-nav me-2 pr-5">
+                          {% if current_user.is_authenticated %}
+                              <a class="nav-item nav-link" href="{{ url_for('logout') }}"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                width="30" height="30"
+                                viewBox="0 0 172 172"
+                                style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="#d142d1"></path><g fill="#000000"><path d="M85.91042,11.38828c-1.74948,0.02744 -3.3907,0.85217 -4.45677,2.23958c-0.0075,0.01117 -0.01497,0.02237 -0.02239,0.03359l-22.41823,22.41823c-1.49776,1.43802 -2.1011,3.57339 -1.57732,5.58258c0.52378,2.00919 2.09283,3.57824 4.10202,4.10202c2.00919,0.52378 4.14456,-0.07955 5.58258,-1.57731l13.14636,-13.14635v60.69271c-0.02924,2.06765 1.05709,3.99087 2.843,5.03322c1.78592,1.04236 3.99474,1.04236 5.78066,0c1.78592,-1.04236 2.87225,-2.96558 2.843,-5.03322v-60.69271l13.14636,13.14635c1.43802,1.49776 3.57339,2.1011 5.58258,1.57731c2.00919,-0.52378 3.57824,-2.09283 4.10202,-4.10202c0.52378,-2.00919 -0.07955,-4.14456 -1.57732,-5.58258l-22.42942,-22.42943c-1.10213,-1.44896 -2.82684,-2.28846 -4.64714,-2.26198zM34.43359,44.20938c-1.89052,0.00246 -3.65833,0.93663 -4.72552,2.49714c-7.81491,11.10441 -12.50807,24.64526 -12.50807,39.29349c0,37.92867 30.87133,68.8 68.8,68.8c37.92867,0 68.8,-30.87133 68.8,-68.8c0,-14.64823 -4.69316,-28.18908 -12.50808,-39.29349c-1.82132,-2.59128 -5.39843,-3.21546 -7.98971,-1.39414c-2.59128,1.82132 -3.21546,5.39843 -1.39414,7.98971c6.54135,9.29479 10.42526,20.49121 10.42526,32.69792c0,31.73133 -25.60201,57.33333 -57.33333,57.33333c-31.73133,0 -57.33333,-25.60201 -57.33333,-57.33333c0,-12.20671 3.8839,-23.40313 10.42526,-32.69792c1.26273,-1.74707 1.4389,-4.05474 0.45602,-5.97325c-0.98288,-1.91851 -2.95873,-3.12366 -5.11435,-3.11946z"></path></g></g></svg></a>
+                          {% endif %}    
+                      </div>
+        
+                </ul>
+              </div>
+            </div>
+
+              </div>
+          </div>
+                <!-- Navbar Right Side -->
+    </nav>
+
+  </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8 pt-5">
+          <div class="canvas">
+          {% block content %}
+          {% endblock %}
+          </div>
+        </div>
+        <div class="col-md-4 pt-5">
+        </div>
+      </div>
+    </main>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

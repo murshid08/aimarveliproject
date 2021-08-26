@@ -1,0 +1,16 @@
+{% extends "exrhome.html" %}
+{% block content %}
+<table>
+  <th>email</th>
+  <th>category</th>
+  <th>fields</th>
+    {% for post in posts.items %}
+    <tr class="retrieve">
+      <td>{{post.author.email}}</td>
+      <td>{{post.category}}</td>
+      <td>{{post.cat_fields}}</td>
+    </tr>
+    {% endfor %}
+
+  </table>
+{% endblock content %}
